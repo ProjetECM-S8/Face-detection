@@ -8,7 +8,14 @@ Desktop.ini
 db.ini
 deploy_key_rsa
 
+#Test Files
+*.mp4
+*.jpg
+*.pdf
+Untitled.ipynb
 
+#Repo
+keras-yolo3-facedetection/
 
 # The weights of the trained models
 model-weights/
