@@ -1,6 +1,6 @@
 # High performance Face Detection in real time 
 In this project, we test and compare different face detection algorithms on images and videos in several resolution formats. The environment required is 
-'''
+````
 numpy
 tensorflow>=1.12.1
 opencv-python
@@ -8,7 +8,7 @@ opencv-contrib-python
 keras
 matplotlib
 pillow
-'''
+````
 
 ## Pipeline of face detector and tracker based on Haar Cascade and KCF filters.
 Detect and track faces from a webcam (required). 
@@ -33,7 +33,7 @@ Blue = Box from previous detection, updated via tracking.
 3. Update detector periodically or on-demand, and re-create trackers for each box. 
 
 ### Usage
-
+Change Directory to `face_tracking`
 Run main program, you should see webcam screen, with Green or Blue box for faces detected. 
 
 Green = Detected face 
@@ -59,7 +59,7 @@ python face_tracking.py -i 3
 The YOLOv3 (You Only Look Once) is a state-of-the-art, performant, real-time object detection algorithm based on CNN. The published model recognizes 80 different objects in images and videos. The model can be adapted to detect specifically human face. The implementation is based on the work by sthanhng [GitHub link](https://github.com/sthanhng/yoloface)
 
 ### Usage
-* Change directory to 'Yoloface'
+* Change directory to `Yoloface` 
 
 * For face detection, you should download the pre-trained YOLOv3 weights file which trained on the [WIDER FACE: A Face Detection Benchmark](http://mmlab.ie.cuhk.edu.hk/projects/WIDERFace/index.html) dataset from this [link](https://drive.google.com/file/d/1xYasjU52whXMLT5MtF7RCPQkV66993oR/view?usp=sharing) and place it in the `model-weights/` directory.
 
