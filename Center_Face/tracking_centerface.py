@@ -12,12 +12,12 @@ RED = (0, 0, 255)
 
 def draw_boxes(frame, boxes, num, color=(0, 255, 0)):
     label=0
-    with open(str(num)+'.txt', 'a') as file_handle:  # .txt可以不自己新建,代码会自动新建
+    with open(str(num)+'.txt', 'a') as file_handle:  # 
         for (x, y, w, h) in boxes:
             label=label+1
             cv2.rectangle(frame, (int(x), int(y)), (int(w), int(h)), color, 2)
             result2txt=str([label,x,y,w,h])
-            file_handle.write(result2txt)  # 写入
+            file_handle.write(result2txt)  # 
             file_handle.write('\n')
             font = cv2.FONT_HERSHEY_SIMPLEX
             cv2.putText(frame, str(label), (int(x), int(y)), font, 1, (0, 0, 255), 1)
@@ -138,9 +138,9 @@ def run(event_interval=6):
     ##
     ## main loop
     ##
-    fps = 48  # 视频每秒24帧
-    size = (1920, 1080)  # 需要转为视频的图片的尺寸
-    # 可以使用cv2.resize()进行修改
+    fps = 48  # 
+    size = (1920, 1080)  # 
+    #
     video = cv2.VideoWriter("result_foule.mp4", cv2.VideoWriter_fourcc('m', 'p', '4', 'v'), fps, size)
     num=0
     while True:
