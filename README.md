@@ -32,7 +32,8 @@ $ pip install --upgrade virtualenv
 
 Create a Python 3.6 virtual environment for this project and activate the virtualenv:
 ```bash
-$ virtualenv -p python3.6 yoloface
+$ virtualenv -p python3.6 project
+$ source ./project/bin/activate
 ```
 
 Next, install the dependencies for the this project:
