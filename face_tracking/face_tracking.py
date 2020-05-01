@@ -1,5 +1,5 @@
 import cv2
-import sys, datetime
+import sys, datetimeipc
 from time import sleep
 
 import numpy as np
@@ -37,6 +37,7 @@ class FaceDetector():
         return faces
 
 class FaceTracker():
+
     
     def __init__(self, frame, face):
         (x,y,w,h) = face
@@ -89,6 +90,7 @@ class Pipeline():
         new = type(faces) is not tuple
 
         return faces, new
+    
     
     def track(self, frame):
         boxes = [t.update(frame) for t in self.trackers]

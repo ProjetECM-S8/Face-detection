@@ -2,7 +2,7 @@
 Thumbs.db
 ehthumbs.db
 Desktop.ini
-
+__pycache__/
 
 # My configurations:
 db.ini
@@ -21,3 +21,7 @@ keras-yolo3-facedetection/
 model-weights/
 *.weights
 *.h5
+
+Center_Face/tracking.py
+Center_Face/tracking_txt.py
+Center_Face/Output/
