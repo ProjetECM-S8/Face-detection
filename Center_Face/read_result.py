@@ -65,9 +65,9 @@ def run(event_interval=6):
     ##
     ## main loop
     ##
-    fps = 48  # 视频每秒24帧
-    size = (1920, 1080)  # 需要转为视频的图片的尺寸
-    # 可以使用cv2.resize()进行修改
+    fps = 48  # 
+    size = (1920, 1080)  # 
+    # 
     video = cv2.VideoWriter("result_foule.mp4", cv2.VideoWriter_fourcc('m', 'p', '4', 'v'), fps, size)
     num=0
     while True:
