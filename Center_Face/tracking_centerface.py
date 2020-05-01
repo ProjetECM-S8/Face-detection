@@ -179,7 +179,7 @@ if __name__ == '__main__':
     parser.add_argument("--interval", "-i", type=int,
                         action='store',
                         default=20,
-                        help='Detection interval in seconds, default=6')
+                        help='Detection interval in seconds, default=20')
 
     args = parser.parse_args()
     run(args.interval)
