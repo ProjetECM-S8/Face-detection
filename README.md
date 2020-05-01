@@ -16,6 +16,10 @@ Development for this project will be isolated in Python virtual environment. Thi
 
 There are many ways to install `virtual environment (virtualenv)`, see the [Python Virtual Environments: A Primer](https://realpython.com/python-virtual-environments-a-primer/) guide for different platforms, but here are a couple:
 
+First clone this project
+```
+$ git clone https://github.com/ProjetECM-S8/Face-detection
+```
 - For Ubuntu
 ```bash
 $ pip install virtualenv
