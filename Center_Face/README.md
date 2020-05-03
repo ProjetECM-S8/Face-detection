@@ -3,7 +3,9 @@
 This project implements CenterFace, a high-performance and small neural network architecture designed specifically for face detection. Once CenterFace detects image, the tracker KCF is activated to track the trajectory of face movement.
 
 The CenterFace architecture is implemented in the file `centerface.py`. Its model required is stocked in `Center_Face\models\onnx\centerface.onnx`
-Gpu version of detector possible with file 'centerface_tsr.py'. Requires TensorRT.
+
+Gpu version of detector possible with file 'centerface_tsr.py'. 
+Requires TensorRT.
 
 
 ### Pipeline
