@@ -4,8 +4,17 @@ This project implements CenterFace, a high-performance and small neural network 
 
 The CenterFace architecture is implemented in the file `centerface.py`. Its model required is stocked in `Center_Face\models\onnx\centerface.onnx`
 
-Gpu version of detector possible with file 'centerface_tsr.py'. 
-Requires TensorRT.
+### GPU Version with TensorRT
+
+The Gpu version of detector is possible with file 'centerface_tsr.py'. 
+
+Requirement:
+`Python 3.6`, 
+`Pycuda`, 
+`Cuda 10.1`, 
+`TensorRT 6.1.0.5`
+
+You need to transfer model `.onnx` to `.tsr` with code `onnxtrans.py` first, then put it through `centerface_tsr.py`.
 
 
 ### Pipeline
@@ -21,13 +30,13 @@ Change Directory to `Center_face`
 python tracking_centerface.py
 ````
 
-Optionally use `-i` argument to set different detection intervals, in seconds. Default=6.
+Optionally use `-i` argument to set different detection intervals, in seconds. Default=20.
 
 ````
 python tracking_centerface.py -i 3
 ````
 
-The program also saves the faces detected and tracked in txt format in the `Output` directory. Each txt  file contains the face boxes `[No.Face, x,y,width,height]` in a frame.
+The program saves the faces detected and tracked in txt format in the `Output` directory. Each txt file contains the face boxes `[No.Face, x,y,width,height]` in a frame.
 
 To read and to load the boxes saved in the txt files in the original video
 
