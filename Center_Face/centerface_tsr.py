@@ -1,24 +1,75 @@
 import numpy as np
 import cv2
 import datetime
+import pycuda
 import pycuda.autoinit
 import pycuda.driver as cuda
 import tensorrt as trt
+import os
 
+def get_engine(max_batch_size=1, onnx_file_path="", engine_file_path="./models/tensorrt/centerface_1080_1920.trt", fp16_mode=False, int8_mode=False, save_engine=False):
+    """Attempts to load a serialized engine if available, otherwise builds a new TensorRT engine and saves it."""
+    def build_engine(max_batch_size, save_engine):
+        """Takes an ONNX file and creates a TensorRT engine to run inference with"""
+        TRT_LOGGER = trt.Logger()
+        with trt.Builder(TRT_LOGGER) as builder, \
+                builder.create_network() as network, \
+                trt.OnnxParser(network, TRT_LOGGER) as parser:
+
+            builder.max_workspace_size = 1 << 30  # Your workspace size
+            builder.max_batch_size = max_batch_size
+            # pdb.set_trace()
+            builder.fp16_mode = fp16_mode  # Default: False
+            builder.int8_mode = int8_mode  # Default: False
+            if int8_mode:
+                # To be updated
+                raise NotImplementedError
+
+            # Parse model file
+            if not os.path.exists(onnx_file_path):
+                quit('ONNX file {} not found'.format(onnx_file_path))
+
+            print('Loading ONNX file from path {}...'.format(onnx_file_path))
+            with open(onnx_file_path, 'rb') as model:
+                print('Beginning ONNX file parsing')
+                parser.parse(model.read())
+
+            print('Completed parsing of ONNX file')
+            print('Building an engine from file {}; this may take a while...'.format(onnx_file_path))
+
+            engine = builder.build_cuda_engine(network)
+            print("Completed creating Engine")
+
+            if save_engine:
+                with open(engine_file_path, "wb") as f:
+                    f.write(engine.serialize())
+            return engine
+
+    if os.path.exists(engine_file_path):
+        # If a serialized engine exists, load it instead of building a new one.
+        print("Reading engine from file {}".format(engine_file_path))
+        with open(engine_file_path, "rb") as f, trt.Runtime(TRT_LOGGER) as runtime:
+            return runtime.deserialize_cuda_engine(f.read())
+    else:
+        return build_engine(max_batch_size, save_engine)
 
 class CenterFace(object):
     def __init__(self, landmarks=True):
         self.landmarks = landmarks
-        self.trt_logger = trt.Logger()  # This logger is required to build an engine
-        f = open("../models/tensorrt/centerface.trt", "rb")
-        runtime = trt.Runtime(self.trt_logger)
-        self.net = runtime.deserialize_cuda_engine(f.read())
+        # self.TRT_LOGGER = trt.Logger()  # This logger is required to build an engine
+        # f = open("../models/tensorrt/centerface.trt", "rb")
+        # runtime = trt.Runtime(self.trt_logger)
+        
         self.img_h_new, self.img_w_new, self.scale_h, self.scale_w = 0, 0, 0, 0
+
+    
 
     def __call__(self, img, height, width, threshold=0.5):
         h, w = img.shape[:2]
         self.img_h_new, self.img_w_new, self.scale_h, self.scale_w = height, width, height / h, width / w
         return self.inference_tensorrt(img, threshold)
+
+    
 
     def inference_tensorrt(self, img, threshold):
 
@@ -67,7 +118,7 @@ class CenterFace(object):
 
         image_cv = cv2.resize(img, dsize=(self.img_w_new, self.img_h_new))
         blob = np.expand_dims(image_cv[:, :, (2, 1, 0)].transpose(2, 0, 1), axis=0).astype("float32")
-        engine = self.net
+        engine = get_engine(onnx_file_path="./models/onnx/enterface_1088_1920.onnx")
 
         # Create the context for this engine
         context = engine.create_execution_context()
