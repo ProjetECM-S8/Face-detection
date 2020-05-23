@@ -8,6 +8,8 @@ https://github.com/xingyizhou/CenterTrack
 
 https://drive.google.com/open?id=1sdkbb2BLlLpOeaSwCtROsiyqb853kNt4
 
+![](readme/foule_coco.jpg)
+
 # Tracking Objects as Points
 Simultaneous object detection and tracking using center points:
 ![](readme/fig2.png)
