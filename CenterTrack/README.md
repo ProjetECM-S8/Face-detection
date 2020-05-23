@@ -19,35 +19,24 @@ Tracking has traditionally been the art of following interest points through spa
 
 Please refer to [INSTALL.md](readme/INSTALL.md) for installation instructions.
 
+Notice that you must have `Pytorch <= 1.4.0` to compile `DCNv2`, otherwise you might have some problems.
+
+I used Ubuntu 20.04, Cuda 10.2, Pytorch = 1.4+Cuda10.0, torchvision = 0.5+Cuda10.0 to succesfully run the test. Pytorch 1.5.0 didn't work for me.
+
+Also if your gcc and g++ version is too new you'll need to downgrade it, with gcc-7 and g++-7 it'll work.
+
+
+
 ## Use CenterTrack
 
-We support demo for videos, webcam, and image folders. 
+CenterTrack support demo for videos, webcam, and image folders. 
 
-First, download the models (By default, [nuscenes\_3d\_tracking](https://drive.google.com/open?id=1e8zR1m1QMJne-Tjp-2iY_o81hn2CiQRt) for monocular 3D tracking, [coco_tracking](https://drive.google.com/open?id=1tJCEJmdtYIh8VuN8CClGNws3YO7QGd40) for 80-category detection and 
-[coco_pose_tracking](https://drive.google.com/open?id=1H0YvFYCOIZ06EzAkC2NxECNQGXxK27hH) for pose tracking) 
-from the [Model zoo](readme/MODEL_ZOO.md) and put them in `CenterNet_ROOT/models/`.
+First, download the models. By default, [coco_tracking](https://drive.google.com/open?id=1tJCEJmdtYIh8VuN8CClGNws3YO7QGd40) for 80-category detection, which works best for face detection. You can also download other models from the [Model zoo](readme/MODEL_ZOO.md) and put them in `CenterNet_ROOT/models/`.
 
-We provide a video clip from the [nuScenes dataset](https://www.nuscenes.org/?externalData=all&mapData=all&modalities=Any) in `videos/nuscenes_mini.mp4`.
-To test monocular 3D tracking on this video, run
+To test face detection and tracking on the video, run
 
 ~~~
-python demo.py tracking,ddd --load_model ../models/nuScenes_3Dtracking.pth --dataset nuscenes --pre_hm --track_thresh 0.1 --demo ../videos/nuscenes_mini.mp4 --test_focal_length 633
-~~~
-
-You will need to specify `test_focal_length` for monocular 3D tracking demo to convert the image coordinate system back to 3D.
-The value `633` is half of a typical focal length (`~1266`) in nuScenes dataset in input resolution `1600x900`.
-The mini demo video is in an input resolution of `800x448`, so we need to use a half focal length.
-You don't need to set the `test_focal_length` when testing on the original nuScenes data.
-
-If setup correctly, you will see an output video like:
-
-<p align="center"> <img src='readme/nuscenes_3d.gif' align="center" height="230px"> </p>
-
-
-Similarly, for 80-category tracking on images/ video, run:
-
-~~~
-python demo.py tracking --load_model ../models/coco_tracking.pth --demo /path/to/image/or/folder/or/video 
+python demo.py tracking --load_model ../models/coco_tracking.pth --demo /path/to/image/or/folder/or/video  --save_video
 ~~~
 
 For webcam demo, run     
@@ -55,19 +44,6 @@ For webcam demo, run
 ~~~
 python demo.py tracking --load_model ../models/coco_tracking.pth --demo webcam 
 ~~~
-
-For monocular 3D tracking, run 
-
-~~~
-python demo.py tracking,ddd --demo webcam --load_model ../models/coco_tracking.pth --demo /path/to/image/or/folder/or/video/or/webcam 
-~~~
-
-Similarly, for pose tracking, run:
-
-~~~
-python demo.py tracking,multi_pose --load_model ../models/coco_pose.pth --demo /path/to/image/or/folder/or/video/or/webcam 
-~~~
-The result for the example images should look like:
 
 You can add `--debug 2` to visualize the heatmap and offset predictions.
 
