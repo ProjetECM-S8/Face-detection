@@ -146,8 +146,19 @@ $ python yoloface.py --video samples/subway.mp4 --output-dir outputs/
 ```bash
 $ python yoloface.py --src 1 --output-dir outputs/
 ```
+## CenterTrack
 
+### Introduction  
 
+This is a test of CenterTrack on face detection and tracking.
 
+> [**Tracking Objects as Points**](http://arxiv.org/abs/2004.01177)
 
+### Result on Foule.mp4:
+
+https://drive.google.com/open?id=1sdkbb2BLlLpOeaSwCtROsiyqb853kNt4
+
+![](CenterTrack/readme/foule_coco.PNG)
+
+Change to `CenterTrack` folder to find instruciton and more details.
 
