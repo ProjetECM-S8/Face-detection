@@ -4,6 +4,10 @@ https://github.com/xingyizhou/CenterTrack
 
 > [**Tracking Objects as Points**](http://arxiv.org/abs/2004.01177)
 
+## Result on Foule.mp4:
+
+https://drive.google.com/open?id=1sdkbb2BLlLpOeaSwCtROsiyqb853kNt4
+
 # Tracking Objects as Points
 Simultaneous object detection and tracking using center points:
 ![](readme/fig2.png)
