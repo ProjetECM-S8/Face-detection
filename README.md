@@ -162,3 +162,18 @@ https://drive.google.com/open?id=1sdkbb2BLlLpOeaSwCtROsiyqb853kNt4
 
 Change to `CenterTrack` folder to find instruciton and more details.
 
+## CenterFace + Deep sort
+We use CenterFace as dector and Deep sort for tracking. 
+### Usage
+1. Download CenterFace model and this repository from 
+2.Download deepsort parameters ckpt.t7
+```bash
+cd deep_sort/deep/checkpoint
+# download ckpt.t7 from
+https://drive.google.com/drive/folders/1xhG0kRH1EX5B9_Iz8gQJb7UNnn_riXi6 to this folder
+cd ../../../
+```
+3.Run demo
+```bash
+python yolov3_deepsort.py [VIDEO_PATH]
+```
