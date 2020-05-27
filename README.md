@@ -165,7 +165,8 @@ Change to `CenterTrack` folder to find instruciton and more details.
 ## CenterFace + Deep sort
 We use CenterFace as dector and Deep sort for tracking. 
 ### Usage
-1. Download CenterFace model and this repository from 
+1. Download CenterFace [model](https://github.com/ProjetECM-S8/Face-detection/tree/master/Center_Face/models) and this repository from [Drive](https://drive.google.com/drive/folders/1bBL6z1LoTdSdxuZ1p3dlKWD1AKDO_Xbm?usp=sharing)
+
 2.Download deepsort parameters ckpt.t7
 ```bash
 cd deep_sort/deep/checkpoint
@@ -175,5 +176,10 @@ cd ../../../
 ```
 3.Run demo
 ```bash
-python yolov3_deepsort.py [VIDEO_PATH]
+python centerface_deepsort.py [VIDEO_PATH]
 ```
+4.Read and load the boxes saved in the txt files in the original video
+```bash
+python read_result.py
+```
+
