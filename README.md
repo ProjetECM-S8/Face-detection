@@ -167,18 +167,18 @@ We use CenterFace as dector and Deep sort for tracking.
 ### Usage
 1. Download CenterFace [model](https://github.com/ProjetECM-S8/Face-detection/tree/master/Center_Face/models) and this repository from [Drive](https://drive.google.com/drive/folders/1bBL6z1LoTdSdxuZ1p3dlKWD1AKDO_Xbm?usp=sharing)
 
-2.Download deepsort parameters ckpt.t7
+2. Download deepsort parameters ckpt.t7
 ```bash
 cd deep_sort/deep/checkpoint
 # download ckpt.t7 from
 https://drive.google.com/drive/folders/1xhG0kRH1EX5B9_Iz8gQJb7UNnn_riXi6 to this folder
 cd ../../../
 ```
-3.Run demo
+3. Run demo
 ```bash
 python centerface_deepsort.py [VIDEO_PATH]
 ```
-4.Read and load the boxes saved in the txt files in the original video
+4. Read and load the boxes saved in the txt files in the original video
 ```bash
 python read_result.py
 ```
