@@ -1,5 +1,6 @@
-# High performance Face Detection in real time 
-In this project, we test and compare different face detection algorithms on images and videos in several resolution formats. The environment required is 
+# High performance Face Detection and Tracking in real time 
+In this project, we test and compare different face detection algorithms on images and videos, and we have done lots of research to combine different algorithms together to get best performance on our mission, where hundreds of faces appear in the video and need to be detected and tracked.
+The environment required is 
 ````
 numpy
 tensorflow>=1.12.1
@@ -8,7 +9,9 @@ opencv-contrib-python
 keras
 matplotlib
 pillow
+TensorRT
 ````
+More details can be found in the corresponding branches.
 
 ## Prerequisites
 
